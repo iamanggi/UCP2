@@ -12,5 +12,5 @@ data class MataKuliah(
     val SKS: String,
     val semester: String,
     val jenisMK: String,
-    val DosenPengampu: String
+    val dosenPengampu: String
 )
