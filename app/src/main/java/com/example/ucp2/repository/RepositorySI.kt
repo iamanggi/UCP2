@@ -11,6 +11,7 @@ interface RepositorySI {
 
     suspend fun insertMk(mataKuliah: MataKuliah)
     fun getAllMK(): Flow<List<MataKuliah>>
+    fun getMKJoin(kode: String): Flow<List<MataKuliah>>
     fun getMK(kode: String) : Flow<MataKuliah>
     suspend fun deleteMk(mataKuliah: MataKuliah)
     suspend fun updateMk(mataKuliah: MataKuliah)
