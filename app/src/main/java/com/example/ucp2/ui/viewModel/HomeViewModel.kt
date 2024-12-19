@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 
-class HomeTodoViewModel (
+class HomeViewModel (
     private val repositorySI: RepositorySI
 ) : ViewModel()
 {
