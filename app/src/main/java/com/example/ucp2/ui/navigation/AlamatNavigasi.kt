@@ -15,3 +15,7 @@ object DestinasiHome : AlamatNavigasi{   //object akan menjadi nama halaman/ men
 object DestinasiHomeDosen : AlamatNavigasi{
     override val route: String = "home_dosen"
 }
+
+object DestinasiInsertDosen : AlamatNavigasi{
+    override val route: String = "insert_dosen"
+}
