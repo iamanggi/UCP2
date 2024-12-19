@@ -81,3 +81,39 @@ fun HomeView(
     )
 }
 
+@Composable
+fun BodyHomeView(
+    homeUiState: HomeUiState = HomeUiState(),
+    modifier: Modifier = Modifier,
+    onClick: (String) -> Unit = { },
+    onDosen: () -> Unit,
+    onMK: () -> Unit
+) {
+    Column(
+        modifier = modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            // Box Dosen
+            BoxDosen(
+                label = "Dosen",
+                onClick = onDosen
+            )
+
+            Spacer(modifier = Modifier.width(16.dp))
+
+            // Box Mata kuliah
+            BoxMk(
+                label = "Mata Kuliah",
+                onClick = onMK
+            )
+        }
+    }
+}
+
