@@ -16,6 +16,10 @@ import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,6 +31,9 @@ import androidx.compose.ui.text.style.TextAlign
 
 @Composable
 fun CustomBottomAppBar(
+    onHomeClick: () -> Unit,
+    onDosenClick: () -> Unit,
+    onMkClick: () -> Unit,
     selectedItem: Int = 0,
     modifier: Modifier = Modifier
 ) {
@@ -42,20 +49,20 @@ fun CustomBottomAppBar(
             icon = Icons.Default.Home,
             label = "Home",
             isSelected = selectedItem == 0
-        ) { }
+        ) {onHomeClick() }
 
         BottomBarIcon(
             icon = Icons.Default.Person,
             label = "Dosen",
             isSelected = selectedItem == 1
-        ) { }
+        ) {onDosenClick() }
 
 
         BottomBarIcon(
             icon = Icons.Default.AccountBox,
             label = "MataKuliah",
             isSelected = selectedItem == 2
-        ) { }
+        ) { onMkClick()}
 
     }
 }
@@ -88,4 +95,15 @@ fun BottomBarIcon(
     }
 }
 
+@Composable
+fun CustomBottomAppBarPreview() {
+    var selectedItem by remember { mutableStateOf(0) }
+
+    CustomBottomAppBar(
+        onHomeClick = { selectedItem = 0 },
+        onDosenClick = { selectedItem = 1 },
+        onMkClick = { selectedItem = 2},
+        selectedItem = selectedItem
+    )
+}
 
