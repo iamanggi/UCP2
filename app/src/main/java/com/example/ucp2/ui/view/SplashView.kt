@@ -24,6 +24,7 @@ import com.example.ucp2.R
 
 @Composable
 fun SplashView(
+    onMulaiButton: () -> Unit
 ){
     Column (modifier = Modifier.fillMaxSize()
         .background(color = colorResource(id = R.color.white)),
@@ -39,7 +40,7 @@ fun SplashView(
         )
 
         //menambahkan Button untuk kehalaman berikutnya
-        Button(onClick = {},
+        Button(onClick = {onMulaiButton()},
             modifier = Modifier.fillMaxWidth().padding(24.dp),  colors = ButtonDefaults.buttonColors(
                 containerColor = colorResource(id = R.color.biru_muda),
                 contentColor = colorResource(id = R.color.white)
