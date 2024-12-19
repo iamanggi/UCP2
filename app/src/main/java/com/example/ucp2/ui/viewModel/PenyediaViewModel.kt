@@ -13,6 +13,16 @@ object PenyediaViewModel {
                 SiApp().containerApp.repositorySI
             )
         }
+        initializer {
+            HomeDosenViewModel(
+                SiApp().containerApp.repositorySI
+            )
+        }
+        initializer {
+            InsertDosenViewModel(
+                SiApp().containerApp.repositorySI
+            )
+        }
     }
 }
 
