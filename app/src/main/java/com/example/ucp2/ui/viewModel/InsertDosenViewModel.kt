@@ -2,6 +2,13 @@ package com.example.ucp2.ui.viewModel
 
 import com.example.ucp2.data.entity.Dosen
 
+//untuk merubah state/ tampilan
+data class DosenUiState(
+    val dosenEvent: DosenEvent = DosenEvent(),
+    val isEntryValid: FormErrorState = FormErrorState(),
+    val snackBarMessage: String? = null,
+)
+
 //berfungsi untuk validasi
 data class FormErrorState(
     val nidn: String? = null,
