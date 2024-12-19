@@ -1,11 +1,21 @@
 package com.example.ucp2.ui.view
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -24,6 +34,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.ucp2.data.entity.Dosen
 import com.example.ucp2.ui.customwidget.CustomBottomAppBar
 import com.example.ucp2.ui.customwidget.TopAppBar
 import com.example.ucp2.ui.viewModel.HomeDosenUiState
@@ -137,5 +148,24 @@ fun BodyHomeDosenView(
                 modifier = Modifier.padding(top = 100.dp)
             )
         }
+    }
+}
+@Composable
+fun ListDosen(
+    listDsn: List<Dosen>,
+    modifier: Modifier = Modifier,
+    onClick: (String) -> Unit = { }
+){
+    LazyColumn (modifier = modifier)
+    {
+        items(
+            items = listDsn,
+            itemContent = { dsn ->
+                CardMhs(
+                    dsn = dsn,
+                    onClick = {onClick(dsn.nidn)}
+                )
+            }
+        )
     }
 }
