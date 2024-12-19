@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.DateRange
@@ -161,11 +162,64 @@ fun ListDosen(
         items(
             items = listDsn,
             itemContent = { dsn ->
-                CardMhs(
+                CardDsn(
                     dsn = dsn,
                     onClick = {onClick(dsn.nidn)}
                 )
             }
         )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun CardDsn(
+    dsn: Dosen,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = { }
+) {
+    Card (
+        onClick = onClick,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ){
+        Column(modifier = Modifier.padding(12.dp)
+        )
+        {
+            Row (modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically)
+            {
+                Icon(imageVector = Icons.Filled.Person, contentDescription = "")
+                Spacer(modifier = Modifier.padding(4.dp))
+                Text(
+                    text = dsn.nidn,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp
+                )
+            }
+            Row (modifier = Modifier.fillMaxWidth().padding(top = 6.dp),
+                verticalAlignment = Alignment.CenterVertically)
+            {
+                Icon(imageVector = Icons.Filled.DateRange, contentDescription = "")
+                Spacer(modifier = Modifier.padding(4.dp))
+                Text(
+                    text = dsn.namaDosen,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp
+                )
+            }
+            Row (modifier = Modifier.fillMaxWidth().padding(top = 6.dp),
+                verticalAlignment = Alignment.CenterVertically)
+            {
+                Icon(imageVector = Icons.Filled.Home, contentDescription = "")
+                Spacer(modifier = Modifier.padding(4.dp))
+                Text(
+                    text = dsn.jenisKelamin,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp
+                )
+            }
+        }
     }
 }
