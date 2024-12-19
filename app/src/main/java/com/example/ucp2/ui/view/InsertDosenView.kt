@@ -2,9 +2,13 @@ package com.example.ucp2.ui.view
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -15,11 +19,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucp2.ui.customwidget.TopAppBar
 import com.example.ucp2.ui.viewModel.DosenEvent
 import com.example.ucp2.ui.viewModel.DosenUiState
+import com.example.ucp2.ui.viewModel.FormErrorState
 import com.example.ucp2.ui.viewModel.InsertDosenViewModel
 import com.example.ucp2.ui.viewModel.PenyediaViewModel
 import kotlinx.coroutines.launch
@@ -106,5 +114,76 @@ fun InsertBodyDsn(
         ) {
             Text(text = "Simpan")
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun FormDosen(
+    dosenEvent: DosenEvent = DosenEvent(), //berisi data class yang memiliki beberapa member member
+    onValueChange: (DosenEvent) -> Unit ={},
+    errorState: FormErrorState = FormErrorState(),
+    modifier: Modifier = Modifier
+) {
+
+    val jenisKelamin = listOf("Laki - laki", "Perempuan")
+
+    Column(modifier = modifier.fillMaxWidth().padding(top = 20.dp))
+    {
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = dosenEvent.nidn,
+            onValueChange = { //mengubah status tampilan
+                onValueChange(dosenEvent.copy(nidn = it))
+            },
+            label = { Text("Nidn") },
+            isError = errorState.nidn != null, //digunakan untuk validasi, dan errorstate diambil dari parameter
+            placeholder = { Text("Masukkan Nidn") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+        )
+        Text(
+            text = errorState.nidn ?: "", //digunakan untuk memunculkan pesan errornya
+            color = Color.Red
+        )
+
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = dosenEvent.namaDosen,
+            onValueChange = {
+                onValueChange(dosenEvent.copy(namaDosen = it))
+            },
+            label = { Text("Nama Dosen") },
+            isError = errorState.namaDosen != null,
+            placeholder = { Text("Masukkan Nama Dosen") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
+        )
+        Text(
+            text = errorState.namaDosen ?: "",
+            color = Color.Red
+        )
+
+        Text(text = "Jenis Kelamin")
+        Row(modifier = Modifier.fillMaxWidth())
+        {
+            jenisKelamin.forEach { jk ->
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Start
+                )
+                {
+                    RadioButton(
+                        selected = dosenEvent.jenisKelamin == jk,
+                        onClick = {
+                            onValueChange(dosenEvent.copy(jenisKelamin = jk))
+                        },
+                    )
+                    Text(text = jk)
+                }
+            }
+        }
+        Text(
+            text = errorState.jenisKelamin ?: "",
+            color = Color.Red
+        )
     }
 }
