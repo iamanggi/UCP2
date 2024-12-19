@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.ucp2.ui.view.HomeDosenView
 import com.example.ucp2.ui.view.HomeView
+import com.example.ucp2.ui.view.InsertDosenView
 import com.example.ucp2.ui.view.SplashView
 
 @Composable
@@ -42,10 +43,23 @@ fun PengelolaHalaman(
         // Menambahkan composable untuk DestinasiHomeDosen
         composable(route = DestinasiHomeDosen.route) {
             HomeDosenView(
+                onAddMhs = {
+                    navController.navigate(DestinasiInsertDosen.route)
+                },
                 onHome = { navController.navigate(DestinasiHome.route) },
                 onBack = { navController.popBackStack() },
-
             )
+        }
+        composable(
+            route = DestinasiInsertDosen.route
+        ){
+            InsertDosenView(onBack = {
+                navController.popBackStack()
+            },
+                onNavigate = {
+                    navController.popBackStack()
+                },
+                modifier = modifier)
         }
     }
 }
