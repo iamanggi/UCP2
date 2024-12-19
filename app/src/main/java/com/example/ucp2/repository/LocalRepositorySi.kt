@@ -40,4 +40,8 @@ class LocalRepositorySi(
     override suspend fun deleteMk(mataKuliah: MataKuliah) {
         matakuliahDao.insertMatakuliah(mataKuliah)
     }
+    // Mengambil mata kuliah beserta nama dosen pengampu (menggunakan INNER JOIN)
+    override fun getMKJoin(kode: String): Flow<List<MataKuliah>> {
+        return matakuliahDao.getMatakuliahJoin(kode)
+    }
 }
