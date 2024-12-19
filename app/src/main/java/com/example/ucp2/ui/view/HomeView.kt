@@ -117,3 +117,81 @@ fun BodyHomeView(
     }
 }
 
+@Composable
+fun BoxDosen(
+    label: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Card(
+        shape = RoundedCornerShape(12.dp),
+        modifier = modifier
+            .width(150.dp)
+            .height(150.dp)
+            .padding(8.dp),
+        onClick = onClick,
+        colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.biru_002))
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+
+            Icon(
+                imageVector = Icons.Filled.Person,
+                contentDescription = null,
+                modifier = Modifier.size(40.dp),
+                tint = Color.Black
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = label,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+        }
+    }
+}
+@Composable
+fun BoxMk(
+    label: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Card(
+        shape = RoundedCornerShape(12.dp),
+        modifier = modifier
+            .width(150.dp)
+            .height(150.dp)
+            .padding(8.dp),
+        onClick = onClick,
+        colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.biru_002))
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+
+            Icon(
+                imageVector = Icons.Filled.AccountBox,
+                contentDescription = null,
+                modifier = Modifier.size(40.dp),
+                tint = Color.Black
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = label,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+        }
+    }
+}
