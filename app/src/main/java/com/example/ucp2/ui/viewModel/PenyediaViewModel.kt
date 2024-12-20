@@ -29,6 +29,11 @@ object PenyediaViewModel {
                 SiApp().containerApp.repositorySI
             )
         }
+        initializer {
+            InsertMkViewModel(
+                SiApp().containerApp.repositorySI
+            )
+        }
         initializer{
             DetailMKViewModel(
                 createSavedStateHandle(),
