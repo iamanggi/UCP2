@@ -22,6 +22,7 @@ fun DynamicSelectedTextField(
     selectedValue: String,
     listDosen: List<Dosen>,
     label: String,
+    onClick: () -> Unit,
     onValueChangedEvent: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
