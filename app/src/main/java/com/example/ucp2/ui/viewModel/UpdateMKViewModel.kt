@@ -29,9 +29,7 @@ class UpdateMkViewModel (
                 .first()
                 .toUIStateMk()
         }
-
     }
-
 
     fun updateState(mkEvent: MkEvent){
         updateUiState = updateUiState.copy(
@@ -54,26 +52,25 @@ class UpdateMkViewModel (
         return  errorState.isValid()
     }
 
-    fun updateData(){
+    fun updateData(namaDosen: String) {
         val currentEvent = updateUiState.mkEvent
-
-        if (validateFields()){
+        if (validateFields()) {
             viewModelScope.launch {
-                try{
+                try {
                     repositorySI.updateMk(currentEvent.toMataKuliahEntity())
                     updateUiState = updateUiState.copy(
                         snackBarMessage = "Data berhasil diupdate",
-                        mkEvent = MkEvent(),
+                        mkEvent = MkEvent(), // Reset event setelah update
                         isEntryValid = FormErrorStateMK()
                     )
                     println("snackBarMessage diatur: ${updateUiState.snackBarMessage}")
-                } catch (e: Exception){
+                } catch (e: Exception) {
                     updateUiState = updateUiState.copy(
                         snackBarMessage = "Data gagal diupdate"
                     )
                 }
             }
-        } else{
+        } else {
             updateUiState = updateUiState.copy(
                 snackBarMessage = "Data gagal diupdate"
             )
@@ -83,7 +80,9 @@ class UpdateMkViewModel (
     fun resetSnackBarMessage(){
         updateUiState = updateUiState.copy(snackBarMessage = null)
     }
+
 }
+
 
 fun MataKuliah.toUIStateMk(): MkUiState = MkUiState(
     mkEvent = this.toDetailMKUiEvent()
