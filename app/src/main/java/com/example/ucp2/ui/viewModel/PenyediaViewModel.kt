@@ -1,6 +1,7 @@
 package com.example.ucp2.ui.viewModel
 
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
@@ -25,6 +26,12 @@ object PenyediaViewModel {
         }
         initializer {
             HomeMkViewModel(
+                SiApp().containerApp.repositorySI
+            )
+        }
+        initializer{
+            DetailMKViewModel(
+                createSavedStateHandle(),
                 SiApp().containerApp.repositorySI
             )
         }
