@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ucp2.data.entity.MataKuliah
 import com.example.ucp2.repository.RepositorySI
+import com.example.ucp2.ui.navigation.DestinasiUpdateMK
 import kotlinx.coroutines.launch
 
 class UpdateMkViewModel (
