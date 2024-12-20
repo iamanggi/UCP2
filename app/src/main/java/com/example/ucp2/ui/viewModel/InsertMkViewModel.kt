@@ -114,7 +114,7 @@ fun MkEvent.toMataKuliahEntity(): MataKuliah = MataKuliah(
     SKS = SKS,
     semester = semester,
     jenisMK = jenisMK,
-    dosenPengampu = namaDosen)
+    namaDosen = namaDosen)
 
 // Data class variabel yang menyimpan data input form
 data class MkEvent(
