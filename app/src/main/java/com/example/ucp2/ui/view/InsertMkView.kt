@@ -158,7 +158,7 @@ fun FormMatakuliah(
                 },
                 isError = errorState.kode != null,
                 placeholder = { Text("Masukkan Kode Mata kuliah") },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
                 singleLine = true,
                 shape = RoundedCornerShape(30.dp)
             )
