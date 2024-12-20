@@ -1,18 +1,23 @@
 package com.example.ucp2.ui.view
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
@@ -31,10 +36,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.ucp2.R
 import com.example.ucp2.data.entity.Dosen
 import com.example.ucp2.ui.customwidget.CustomBottomAppBar
 import com.example.ucp2.ui.customwidget.TopAppBar
@@ -139,15 +146,25 @@ fun BodyHomeDosenView(
             }
         }
         else -> {
-            //Menampilkan daftar dosen
-            ListDosen(
-                listDsn = homeUiState.listDosen,
-                onClick = {
-                    onClick(it)
-                    println(it)
-                },
-                modifier = Modifier.padding(top = 100.dp)
-            )
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth().height(900.dp).padding(top= 110.dp)
+                    .background(
+                        color = colorResource(id = R.color.biru_003),
+                        shape = RoundedCornerShape(topStart = 25.dp, topEnd = 25.dp)
+                    )
+            ) {
+
+                //Menampilkan daftar dosen
+                ListDosen(
+                    listDsn = homeUiState.listDosen,
+                    onClick = {
+                        onClick(it)
+                        println(it)
+                    },
+                    modifier = Modifier.padding(15.dp)
+                )
+            }
         }
     }
 }
@@ -178,6 +195,7 @@ fun CardDsn(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = { }
 ) {
+
     Card (
         onClick = onClick,
         modifier = modifier
@@ -190,7 +208,8 @@ fun CardDsn(
             Row (modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically)
             {
-                Icon(imageVector = Icons.Filled.Person, contentDescription = "")
+                Icon(imageVector = Icons.Filled.Info,
+                    contentDescription = "", tint = colorResource(id = R.color.biru_tua))
                 Spacer(modifier = Modifier.padding(4.dp))
                 Text(
                     text = dsn.nidn,
@@ -201,7 +220,8 @@ fun CardDsn(
             Row (modifier = Modifier.fillMaxWidth().padding(top = 6.dp),
                 verticalAlignment = Alignment.CenterVertically)
             {
-                Icon(imageVector = Icons.Filled.DateRange, contentDescription = "")
+                Icon(imageVector = Icons.Filled.Person,
+                    contentDescription = "", tint = colorResource(id = R.color.biru_tua))
                 Spacer(modifier = Modifier.padding(4.dp))
                 Text(
                     text = dsn.namaDosen,
@@ -212,7 +232,8 @@ fun CardDsn(
             Row (modifier = Modifier.fillMaxWidth().padding(top = 6.dp),
                 verticalAlignment = Alignment.CenterVertically)
             {
-                Icon(imageVector = Icons.Filled.Home, contentDescription = "")
+                Icon(imageVector = Icons.Filled.Face,
+                    contentDescription = "", tint = colorResource(id = R.color.biru_tua))
                 Spacer(modifier = Modifier.padding(4.dp))
                 Text(
                     text = dsn.jenisKelamin,

@@ -1,5 +1,6 @@
 package com.example.ucp2.ui.view
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -46,12 +47,22 @@ fun HomeView(
 ) {
     Scaffold(
         topBar = {
-            TopAppBar(
-                judul = "SIAKAD+",
-                showBackButton = false,
-                onBack = { },
-                modifier = modifier
-            )
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(120.dp)
+                    .background(colorResource(id = R.color.biru_004),
+                        shape = RoundedCornerShape(bottomEnd = 30.dp, bottomStart = 30.dp)),
+                contentAlignment = Alignment.Center
+            ) {
+                    TopAppBar(
+                        judul = "SIAKAD+",
+                        showBackButton = false,
+                        onBack = { },
+                        modifier = modifier
+                    )
+                }
+
         },
         bottomBar = {
             CustomBottomAppBar(
@@ -130,7 +141,7 @@ fun BoxDosen(
             .height(150.dp)
             .padding(8.dp),
         onClick = onClick,
-        colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.biru_002))
+        colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.biru_004))
     ) {
         Column(
             modifier = Modifier
@@ -149,7 +160,7 @@ fun BoxDosen(
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = label,
-                fontSize = 16.sp,
+                fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White
             )
@@ -169,7 +180,7 @@ fun BoxMk(
             .height(150.dp)
             .padding(8.dp),
         onClick = onClick,
-        colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.biru_002))
+        colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.biru_004))
     ) {
         Column(
             modifier = Modifier
@@ -188,7 +199,7 @@ fun BoxMk(
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = label,
-                fontSize = 16.sp,
+                fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White
             )

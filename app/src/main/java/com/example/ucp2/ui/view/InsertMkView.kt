@@ -29,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucp2.data.entity.Dosen
 import com.example.ucp2.ui.customwidget.DynamicSelectedTextField
@@ -116,7 +117,7 @@ fun InsertBodyMk(
             onClick = onClick,
             modifier = Modifier.fillMaxWidth().padding(top = 20.dp)
         ) {
-            Text(text = "Simpan")
+            Text(text = "Simpan", fontSize = 16.sp)
         }
     }
 }

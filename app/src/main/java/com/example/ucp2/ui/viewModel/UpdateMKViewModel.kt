@@ -32,6 +32,7 @@ class UpdateMkViewModel (
 
     }
 
+
     fun updateState(mkEvent: MkEvent){
         updateUiState = updateUiState.copy(
             mkEvent = mkEvent,

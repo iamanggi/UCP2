@@ -34,11 +34,11 @@ class LocalRepositorySi(
     }
 
     override suspend fun updateMk(mataKuliah: MataKuliah) {
-        matakuliahDao.insertMatakuliah(mataKuliah)
+        matakuliahDao.updateMatakuliah(mataKuliah)
     }
 
     override suspend fun deleteMk(mataKuliah: MataKuliah) {
-        matakuliahDao.insertMatakuliah(mataKuliah)
+        matakuliahDao.deleteMatakuliah(mataKuliah)
     }
     // Mengambil mata kuliah beserta nama dosen pengampu (menggunakan INNER JOIN)
     override fun getMKJoin(kode: String): Flow<List<MataKuliah>> {

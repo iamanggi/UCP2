@@ -40,7 +40,8 @@ fun TopAppBar(
                     modifier = Modifier.align(Alignment.CenterVertically)
                 ) {
                     Icon(imageVector = Icons.Default.ArrowBack,
-                        contentDescription = "")
+                        contentDescription = "",
+                        modifier = Modifier.padding(top = 35.dp))
                 }
                 Spacer(modifier = Modifier.weight(3f))
             }
