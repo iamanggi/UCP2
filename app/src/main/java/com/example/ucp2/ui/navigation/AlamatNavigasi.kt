@@ -23,3 +23,12 @@ object DestinasiInsertDosen : AlamatNavigasi{
 object DestinasiHomeMK : AlamatNavigasi{
     override val route: String = "home_mk"
 }
+object DestinasiInsertMk : AlamatNavigasi{
+    override val route: String = "insert_mk"
+}
+
+object DestinasiDetailMK : AlamatNavigasi{
+    override val route = "detail_mk"
+    const val KODE = "kode"
+    val routesWithArg = "$route/{$KODE}"
+}
