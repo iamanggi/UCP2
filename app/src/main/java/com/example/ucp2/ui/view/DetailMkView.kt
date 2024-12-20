@@ -165,7 +165,7 @@ fun ItemDetailMk(
             Spacer(modifier = Modifier.padding(5.dp))
             ComponentDetailMk(judul = "Jenis Mata Kuliah", isinya = mataKuliah.jenisMK)
             Spacer(modifier = Modifier.padding(5.dp))
-            ComponentDetailMk(judul = "Nama Dosen", isinya = mataKuliah.dosenPengampu)
+            ComponentDetailMk(judul = "Nama Dosen", isinya = mataKuliah.namaDosen)
         }
     }
 }
