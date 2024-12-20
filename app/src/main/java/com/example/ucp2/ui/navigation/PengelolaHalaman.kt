@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.ucp2.ui.view.HomeDosenView
+import com.example.ucp2.ui.view.HomeMkView
 import com.example.ucp2.ui.view.HomeView
 import com.example.ucp2.ui.view.InsertDosenView
 import com.example.ucp2.ui.view.SplashView
@@ -36,6 +37,7 @@ fun PengelolaHalaman(
                 onDosen = {
                     navController.navigate(DestinasiHomeDosen.route)
                 },
+                onMK = {navController.navigate(DestinasiHomeMK.route)},
                 modifier = modifier
             )
         }
@@ -48,6 +50,7 @@ fun PengelolaHalaman(
                 },
                 onHome = { navController.navigate(DestinasiHome.route) },
                 onBack = { navController.popBackStack() },
+                onMK = {navController.navigate(DestinasiHomeMK.route)}
             )
         }
         composable(
@@ -60,6 +63,15 @@ fun PengelolaHalaman(
                     navController.popBackStack()
                 },
                 modifier = modifier)
+        }
+        composable(
+            route = DestinasiHomeMK.route
+        ){
+            HomeMkView(onBack = { navController.popBackStack() },
+                onHome = { navController.navigate(DestinasiHome.route) },
+                onDosen = { navController.navigate(DestinasiHomeDosen.route)},
+                modifier = modifier)
+
         }
     }
 }
