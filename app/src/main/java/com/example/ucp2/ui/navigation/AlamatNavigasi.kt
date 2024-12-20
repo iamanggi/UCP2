@@ -19,3 +19,7 @@ object DestinasiHomeDosen : AlamatNavigasi{
 object DestinasiInsertDosen : AlamatNavigasi{
     override val route: String = "insert_dosen"
 }
+
+object DestinasiHomeMK : AlamatNavigasi{
+    override val route: String = "home_mk"
+}
