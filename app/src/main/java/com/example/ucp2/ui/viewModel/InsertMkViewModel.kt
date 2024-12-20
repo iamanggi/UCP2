@@ -2,6 +2,21 @@ package com.example.ucp2.ui.viewModel
 
 import com.example.ucp2.data.entity.MataKuliah
 
+// Fungsi untuk validasi
+data class FormErrorStateMK(
+    val kode: String? = null,
+    val namaMK: String? = null,
+    val SKS: String? = null,
+    val semester: String? = null,
+    val jenisMK: String? = null,
+    val namaDosen: String? = null
+) {
+    fun isValid(): Boolean {
+        return kode == null && namaMK == null && SKS == null &&
+                semester == null && jenisMK == null && namaDosen == null
+    }
+}
+
 // Menyimpan input form ke dalam entity
 fun MkEvent.toMataKuliahEntity(): MataKuliah = MataKuliah(
     kode = kode,
