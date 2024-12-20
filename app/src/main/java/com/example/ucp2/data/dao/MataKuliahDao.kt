@@ -33,7 +33,7 @@ interface MataKuliahDao {
     @Query("""
         SELECT mk.kode, mk.namaMK, mk.SKS, mk.semester, mk.jenisMK, d.namaDosen 
         FROM matakuliah mk
-        INNER JOIN dosen d ON mk.dosenPengampu = d.nidn
+        INNER JOIN dosen d ON mk.namaDosen = d.nidn
         WHERE mk.kode = :kode
         ORDER BY mk.namaMK ASC
     """)
