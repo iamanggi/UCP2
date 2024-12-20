@@ -9,6 +9,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.ucp2.data.entity.MataKuliah
 import com.example.ucp2.repository.RepositorySI
 import com.example.ucp2.ui.navigation.DestinasiUpdateMK
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class UpdateMkViewModel (
@@ -22,14 +24,12 @@ class UpdateMkViewModel (
 
     init {
         viewModelScope.launch {
-            repositorySI.getMKJoin(_kode).collect { mataKuliahList ->
-                val mataKuliah = mataKuliahList.firstOrNull()
-                if (mataKuliah != null) {
-                    updateUiState = mataKuliah.toUIStateMk()
-                } else {
-                }
-            }
+            updateUiState = repositorySI.getMK(_kode)
+                .filterNotNull()
+                .first()
+                .toUIStateMk()
         }
+
     }
 
     fun updateState(mkEvent: MkEvent){
@@ -83,8 +83,7 @@ class UpdateMkViewModel (
         updateUiState = updateUiState.copy(snackBarMessage = null)
     }
 }
-fun MataKuliah.toUIStateMk(): MkUiState {
-    return MkUiState(
-        mkEvent = this.toDetailMKUiEvent()
-    )
-}
+
+fun MataKuliah.toUIStateMk(): MkUiState = MkUiState(
+    mkEvent = this.toDetailMKUiEvent()
+)
