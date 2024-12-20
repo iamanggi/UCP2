@@ -1,6 +1,15 @@
 package com.example.ucp2.ui.viewModel
 
+import com.example.ucp2.data.entity.Dosen
 import com.example.ucp2.data.entity.MataKuliah
+
+// Untuk merubah state/tampilan
+data class MkUiState(
+    val mkEvent: MkEvent = MkEvent(),
+    val isEntryValid: FormErrorStateMK = FormErrorStateMK(),
+    val snackBarMessage: String? = null,
+    val listDosen: List<Dosen> = emptyList()
+)
 
 // Fungsi untuk validasi
 data class FormErrorStateMK(
