@@ -66,7 +66,7 @@ fun MataKuliah.toDetailMKUiEvent(): MkEvent {
         SKS = SKS,
         semester = semester,
         jenisMK = jenisMK,
-        namaDosen = dosenPengampu
+        namaDosen = namaDosen
     )
 }
 
