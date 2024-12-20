@@ -4,7 +4,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -22,8 +24,12 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -35,6 +41,7 @@ import com.example.ucp2.data.entity.Dosen
 import com.example.ucp2.ui.customwidget.DynamicSelectedTextField
 import com.example.ucp2.ui.customwidget.TopAppBar
 import com.example.ucp2.ui.viewModel.FormErrorStateMK
+import com.example.ucp2.ui.viewModel.HomeDosenViewModel
 import com.example.ucp2.ui.viewModel.InsertMkViewModel
 import com.example.ucp2.ui.viewModel.MkEvent
 import com.example.ucp2.ui.viewModel.MkUiState
@@ -48,11 +55,14 @@ fun InsertMkView(
     modifier: Modifier = Modifier,
     onDosen: () -> Unit = { },
     onMK: () -> Unit = { },
-    viewModel: InsertMkViewModel = viewModel(factory = PenyediaViewModel.Factory)
+    viewModel: InsertMkViewModel = viewModel(factory = PenyediaViewModel.Factory),
+    homeDosenViewModel: HomeDosenViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
     val mkUiState = viewModel.mkUiState
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
+    val homeDosenUiState by homeDosenViewModel.homeDsnUiState.collectAsState()
+    val listDosen = homeDosenUiState.listDosen
 
     LaunchedEffect(mkUiState.snackBarMessage) {
         mkUiState.snackBarMessage?.let { message ->
@@ -81,13 +91,14 @@ fun InsertMkView(
 
             InsertBodyMk(
                 uiState = mkUiState,
-                onValueChange = { updatedEvent ->
+                onValueChange = {updatedEvent ->
                     viewModel.updateState(updatedEvent)
                 },
                 onClick = {
                     viewModel.saveData()
                     onNavigate()
-                }
+                },
+                listDosen = listDosen
             )
         }
     }
@@ -96,11 +107,12 @@ fun InsertMkView(
 @Composable
 fun InsertBodyMk(
     modifier: Modifier = Modifier,
-    onValueChange: (MkEvent) -> Unit,
-    uiState: MkUiState,
+    onValueChange: (MkEvent) -> Unit = {},
+    uiState: MkUiState = MkUiState(),
     onClick: () -> Unit,
+    listDosen: List<Dosen> = emptyList(),
 
-    ) {
+) {
     Column(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
@@ -110,9 +122,11 @@ fun InsertBodyMk(
             mkEvent = uiState.mkEvent,
             onValueChange = onValueChange,
             errorState = uiState.isEntryValid,
-            listDosen = uiState.listDosen,
+            listDosen = listDosen,
             modifier = Modifier.fillMaxWidth()
         )
+
+        Spacer(modifier = Modifier.height(20.dp))
         Button(
             onClick = onClick,
             modifier = Modifier.fillMaxWidth().padding(top = 20.dp)
@@ -240,6 +254,7 @@ fun FormMatakuliah(
                 onValueChangedEvent = { selectedDosen ->
                     onValueChange(mkEvent.copy(namaDosen = selectedDosen))
                 },
+                onClick = {},
                 modifier = Modifier.fillMaxWidth(),
 
             )
