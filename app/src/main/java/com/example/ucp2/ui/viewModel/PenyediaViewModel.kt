@@ -23,6 +23,11 @@ object PenyediaViewModel {
                 SiApp().containerApp.repositorySI
             )
         }
+        initializer {
+            HomeMkViewModel(
+                SiApp().containerApp.repositorySI
+            )
+        }
     }
 }
 
