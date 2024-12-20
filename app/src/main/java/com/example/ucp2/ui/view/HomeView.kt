@@ -47,7 +47,7 @@ fun HomeView(
     Scaffold(
         topBar = {
             TopAppBar(
-                judul = "SI Database",
+                judul = "SIAKAD+",
                 showBackButton = false,
                 onBack = { },
                 modifier = modifier
