@@ -46,7 +46,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun HomeDosenView(
     viewModel: HomeDosenViewModel = viewModel(factory = PenyediaViewModel.Factory),
-    onAddMhs: () -> Unit = { },
+    onAddDosen: () -> Unit = { },
     onDosen: () -> Unit = { },
     onMK: () -> Unit = { },
     onHome: () -> Unit = { },
@@ -64,7 +64,7 @@ fun HomeDosenView(
     },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = onAddMhs,
+                onClick = onAddDosen,
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(16.dp)
             ) {
