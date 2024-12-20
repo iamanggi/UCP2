@@ -130,6 +130,7 @@ fun FormMatakuliah(
     modifier: Modifier = Modifier
 ) {
     val jenisMk = listOf("Peminatan", "Wajib")
+    val semester = listOf("Genap", "Ganjil")
 
     Box() {
         Column(modifier = modifier.fillMaxWidth().padding(top = 20.dp)) {
@@ -184,22 +185,29 @@ fun FormMatakuliah(
             )
             Text(text = errorState.SKS ?: "", color = Color.Red)
 
-            OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
-                value = mkEvent.semester,
-                onValueChange = { onValueChange(mkEvent.copy(semester = it)) },
-                label = { Text("Semester") },
-                leadingIcon = {
-                    Icon(imageVector = Icons.Filled.DateRange,
-                        contentDescription = "")
-                },
-                isError = errorState.semester != null,
-                placeholder = { Text("Masukkan Semester") },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                singleLine = true,
-                shape = RoundedCornerShape(30.dp)
+            Text(text = "Semester")
+            Row(modifier = Modifier.fillMaxWidth())
+            {
+                semester.forEach { smt ->
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Start
+                    )
+                    {
+                        RadioButton(
+                            selected = mkEvent.semester == smt,
+                            onClick = {
+                                onValueChange(mkEvent.copy(semester = smt))
+                            },
+                        )
+                        Text(text = smt)
+                    }
+                }
+            }
+            Text(
+                text = errorState.semester ?: "",
+                color = Color.Red
             )
-            Text(text = errorState.semester ?: "", color = Color.Red)
 
             Text(text = "Jenis Mata Kuliah")
             Row(modifier = Modifier.fillMaxWidth())
