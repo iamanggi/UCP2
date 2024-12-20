@@ -5,8 +5,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
@@ -137,9 +143,15 @@ fun FormDosen(
                 onValueChange(dosenEvent.copy(nidn = it))
             },
             label = { Text("Nidn") },
+            leadingIcon = {
+                Icon(imageVector = Icons.Filled.Info,
+                    contentDescription = "")
+            },
             isError = errorState.nidn != null, //digunakan untuk validasi, dan errorstate diambil dari parameter
             placeholder = { Text("Masukkan Nidn") },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            singleLine = true,
+            shape = RoundedCornerShape(30.dp)
         )
         Text(
             text = errorState.nidn ?: "", //digunakan untuk memunculkan pesan errornya
@@ -153,9 +165,15 @@ fun FormDosen(
                 onValueChange(dosenEvent.copy(namaDosen = it))
             },
             label = { Text("Nama Dosen") },
+            leadingIcon = {
+                Icon(imageVector = Icons.Filled.Person,
+                    contentDescription = "")
+            },
             isError = errorState.namaDosen != null,
             placeholder = { Text("Masukkan Nama Dosen") },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+            singleLine = true,
+            shape = RoundedCornerShape(30.dp)
         )
         Text(
             text = errorState.namaDosen ?: "",
