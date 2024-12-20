@@ -15,6 +15,7 @@ import com.example.ucp2.ui.view.HomeView
 import com.example.ucp2.ui.view.InsertDosenView
 import com.example.ucp2.ui.view.InsertMkView
 import com.example.ucp2.ui.view.SplashView
+import com.example.ucp2.ui.view.UpdateMkView
 
 @Composable
 fun PengelolaHalaman(
@@ -92,6 +93,47 @@ fun PengelolaHalaman(
                 },
                 modifier = modifier)
         }
-
+        composable(
+            DestinasiDetailMK.routesWithArg,
+            arguments = listOf(
+                navArgument(DestinasiDetailMK.KODE){
+                    type = NavType.StringType
+                }
+            )
+        ){
+            val kode = it.arguments?.getString(DestinasiDetailMK.KODE)
+            kode?.let { kode ->
+                DetailMkView(
+                    onBack = {
+                        navController.popBackStack()
+                    },
+                    onEditClick = {
+                        navController.navigate("${DestinasiUpdateMK.route}/$it")
+                    },
+                    modifier = modifier,
+                    onDeleteClick = {
+                        navController.popBackStack()
+                    }
+                )
+            }
+        }
+        composable(
+            DestinasiUpdateMK.routesWithArg,
+            arguments = listOf(
+                navArgument(DestinasiUpdateMK.KODE){
+                    type = NavType.StringType
+                }
+            )
+        ){
+            UpdateMkView(
+                onBack = {
+                    navController.popBackStack()
+                },
+                onNavigate = {
+                    navController.popBackStack()
+                },
+                modifier = modifier
+            )
+        }
     }
 }
